@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.wrapper:not(:last-child) {
+  margin-right: 10px;
+}
