@@ -27,19 +27,13 @@ const Slider = ({ images, image_url }) => {
     })
 
     let thumbnails = new Splide("#thumbnail-carousel", {
-      // fixedWidth: 100,
       perPage: 3,
       fixedHeight: 60,
       gap: 10,
       rewind: true,
       pagination: false,
       isNavigation: true,
-      // breakpoints: {
-      //   600: {
-      //     fixedWidth: 60,
-      //     fixedHeight: 44,
-      //   },
-      // },
+      // width: 100,
     })
 
     main.sync(thumbnails)
@@ -47,7 +41,7 @@ const Slider = ({ images, image_url }) => {
     thumbnails.mount()
   }, [])
   return (
-    <div className='relative'>
+    <div className="relative">
       <section
         id="main-carousel"
         className="splide w-full px-0"
@@ -60,7 +54,7 @@ const Slider = ({ images, image_url }) => {
                 key={id}
                 className="splide__slide w-full h-96 flex bg-black rounded-lg overflow-hidden"
               >
-                <div className="w-1/2 md:flex flex-col justify-between pl-12 py-7 hidden">
+                <div className="w-1/2 md:flex flex-col justify-between px-4 md:pl-8 py-7 hidden">
                   <div>
                     <h1 className="text-3xl font-bold">{movie.title}</h1>
                     <br />
@@ -81,44 +75,46 @@ const Slider = ({ images, image_url }) => {
                     </div>
                   </div>
 
-                  <div className="flex items-center">
-                    <div>
-                      <button className="px-4 py-2 bg-amber-700 rounded-2xl text-gray-50 font-semibold">
-                        Watch
-                      </button>
+                  <div className="">
+                    <div className="flex items-center">
+                      <div>
+                        <button className="px-4 py-2 bg-amber-700 rounded-2xl text-gray-50 font-semibold">
+                          Watch
+                        </button>
+                      </div>
+
+                      <div className="relative ml-4 -mr-4 flex flex-shrink-0">
+                        <img
+                          src={a}
+                          alt=""
+                          className="w-7 h-7 rounded-full object-cover object-center relative"
+                        />
+                        <img
+                          src={b}
+                          alt=""
+                          className="w-7 h-7 rounded-full object-cover object-center relative -left-3"
+                        />
+                        <img
+                          src={e}
+                          alt=""
+                          className="w-7 h-7 rounded-full object-cover object-center relative -left-6"
+                        />
+                      </div>
                     </div>
 
-                    <div className="relative ml-4 -mr-4 flex flex-shrink-0">
-                      <img
-                        src={a}
-                        alt=""
-                        className="w-7 h-7 rounded-full object-cover object-center relative"
-                      />
-                      <img
-                        src={b}
-                        alt=""
-                        className="w-7 h-7 rounded-full object-cover object-center relative -left-3"
-                      />
-                      <img
-                        src={e}
-                        alt=""
-                        className="w-7 h-7 rounded-full object-cover object-center relative -left-6"
-                      />
-                    </div>
-
-                    <span className="text-zinc-400 hidden md:inline">
+                    <div className="text-zinc-400 hidden md:inline mt-20">
                       +5 friends are watching
-                    </span>
+                    </div>
                   </div>
                 </div>
                 <img
-                  src={`${image_url}${movie.backdrop_path}`}
+                  src={`${image_url}${movie.poster_path}`}
                   alt=""
                   className="h-inherit w-full md:w-1/2 image md:hidden"
                   id={id}
                 />
                 <img
-                  src={`${image_url}${movie.poster_path}`}
+                  src={`${image_url}${movie.backdrop_path}`}
                   alt=""
                   className="h-inherit w-full md:w-1/2 image hidden md:inline-block"
                   id={id}
@@ -128,20 +124,16 @@ const Slider = ({ images, image_url }) => {
           </ul>
         </div>
       </section>
-      <div className="absolute bottom-5 -right-[48rem]">
-        <section
-          id="thumbnail-carousel"
-          className="splide w-1/3"
-          aria-label="Splide Basic HTML Example"
-        >
+      <div className="absolute md:w-5/12 right-0 bottom-2 ">
+        <section id="thumbnail-carousel" className="splide">
           <div className="splide__track">
             <ul className="splide__list">
               {images.map((movie, id) => (
-                <li key={id} className="splide__slide w-full">
+                <li key={id} className="splide__slide">
                   <img
-                    src={`${image_url}${movie.poster_path}`}
+                    src={`${image_url}${movie.backdrop_path}`}
                     alt=""
-                    className="h-full object-cover image"
+                    className="image cover w-full center h-full"
                     id={id}
                   />
                 </li>

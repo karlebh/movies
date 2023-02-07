@@ -25,7 +25,6 @@ const SideBar = () => {
         <div className="mt-7 inline-flex flex-col gap-y-4">
           <Link to={"/"}>
             <button
-              onClick={e => console.log(e.target)}
               className={`text-left font-bold border-left inline-flex ${
                 location.pathname == "/"
                   ? "text-zinc-200 border-l-4 border-amber-700"

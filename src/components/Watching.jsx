@@ -1,10 +1,29 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import moment from "moment/moment"
 
-
 const Watching = ({ movies, IMAGE_URL, getGenre }) => {
-  const [pageCount, setPageCount] = useState(4)
+  const screenSize = screen.width
+  let count = 0
+  let increment = 0
+  switch (true) {
+    case screenSize > 768 && screenSize < 1024:
+      count = 9
+      break
+    default:
+      count = 8
+  }
+
+  switch (true) {
+    case screenSize < 768:
+      increment = 2
+    case screenSize >= 768 && screenSize < 1024:
+      increment = 3
+      break
+    default:
+      increment = 4
+  }
+  const [pageCount, setPageCount] = useState(count)
 
   return (
     <section>
@@ -24,7 +43,7 @@ const Watching = ({ movies, IMAGE_URL, getGenre }) => {
                 className="w-full min-h-[12rem] object-cover rounded-t-lg"
                 alt=""
               />
-              <div className="px-3 h-32 overflow-hidden mt-3 flex flex-col justify-evenly">
+              <div className="px-3 h-44   overflow-hidden mt-3 flex flex-col justify-evenly">
                 <h1 className="font-bold text-sm text-zinc-300 text-left mb-3 ">
                   {movie.title}
                 </h1>
@@ -50,28 +69,32 @@ const Watching = ({ movies, IMAGE_URL, getGenre }) => {
           </Link>
         ))}
       </div>
-      {pageCount >= movies.length ||
-      <div className="flex justify-center items-center mt-10 mb-10">
-        <br />
-        <button
-          onClick={() => setPageCount(prevCount => prevCount + 2)}
-          className="text-xl font-bold px-3 py-2 rounded-lg bg-zinc-200 text-zinc-800 md:hidden"
-        >
-          Load More
-        </button>
-        <button
-          onClick={() => setPageCount(prevCount => prevCount + 3)}
-          className="text-xl font-bold px-3 py-2 rounded-lg bg-zinc-200 text-zinc-800 hidden md:inline-block lg:hidden"
-        >
-          Load More
-        </button>
-        <button
-          onClick={() => {window.scrollTo(0, document.body.scrollHeight); setPageCount(prevCount => prevCount + 4)}}
-          className="text-xl font-bold px-3 py-2 rounded-lg bg-zinc-200 text-zinc-800 hidden lg:inline-block"
-        >
-          Load More
-        </button>
-      </div>}
+      {pageCount >= movies.length || (
+        <div className="flex justify-center items-center mt-10 mb-10">
+          <br />
+          <button
+            onClick={() => setPageCount(prevCount => prevCount + increment)}
+            className="text-xl font-bold px-3 py-2 rounded-lg bg-zinc-200 text-zinc-800 md:hidden"
+          >
+            Load More
+          </button>
+          <button
+            onClick={() => setPageCount(prevCount => prevCount + increment)}
+            className="text-xl font-bold px-3 py-2 rounded-lg bg-zinc-200 text-zinc-800 hidden md:inline-block lg:hidden"
+          >
+            Load More
+          </button>
+          <button
+            onClick={() => {
+              window.scrollTo(0, document.body.scrollHeight)
+              setPageCount(prevCount => prevCount + increment)
+            }}
+            className="text-xl font-bold px-3 py-2 rounded-lg bg-zinc-200 text-zinc-800 hidden lg:inline-block"
+          >
+            Load More
+          </button>
+        </div>
+      )}
     </section>
   )
 }

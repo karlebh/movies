@@ -20,7 +20,7 @@ const Parties = ({ movies, IMAGE_URL, getGenre }) => {
         {movies.slice(0, 12).map((movie, id) => (
           <Link to={`movie/${movie.slug}`} key={id}>
             <div
-              className={`flex-shrink-0 flex flex-col items-stretch justify-between rounded-lg h-40 bg-zinc-800 px-3 py-2 `}
+              className={`flex-shrink-0 flex flex-col items-stretch justify-between rounded-lg h-48 bg-zinc-800 px-3 py-2 `}
             >
               <div className="flex justify-between">
                 <img

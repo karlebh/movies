@@ -11,7 +11,6 @@ const Details = () => {
   function getGenre(id) {
     return localGenres.find(genre => id == genre.id)["name"]
   }
-  console.log(movie)
   return (
     <div className="mt-5 text-center">
       <h1 className="font-bold font-sans text-4xl my-5">
